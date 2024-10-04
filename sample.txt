@@ -1,0 +1,107 @@
+Below are several sample user questions related to the MongoDB document provided, 
+and the corresponding MongoDB aggregation pipeline queries that can be used to fetch the desired data.
+Use them wisely.
+
+Question 1: Recommend me the top 5 spas that are open in Jakarta.
+
+Query:
+json
+[
+  { "$match": { 
+      "city": "Jakarta", 
+      "types": { "$in": ["spa"] } 
+    } 
+  },
+  { "$sort": { "rating": -1 } }, 
+  { "$limit": 5 }, 
+  { "$project": { 
+      "name": 1, 
+      "address": 1, 
+      "rating": 1, 
+      "types": 1 
+    } 
+  }
+]
+
+
+Question 2: Give me a list of accomodations in Jakarta that has an amusement park.
+
+Query:
+json
+[
+  { 
+    "$match": { 
+      "city": "Jakarta", 
+      "types": { "$all": ["lodging", "amusement_park"] } 
+    } 
+  },
+  { 
+    "$project": { 
+      "name": 1, 
+      "address": 1, 
+      "types": 1,
+      "rating": 1
+    } 
+  }
+]
+
+
+Question 3: Recommend me some restaurants in Mangga Besar.
+
+Query:
+json
+[
+  { 
+    "$match": { 
+      "address": { "$regex": "Mangga Besar", "$options": "i" },
+      "types": { "$in": ["restaurant"] }
+    } 
+  },
+  { 
+    "$project": { 
+      "name": 1, 
+      "address": 1, 
+      "types": 1,
+      "rating": 1
+    } 
+  }
+]
+
+
+Question 4: List the top 3 convenience stores that are cheap and open in Singapore.
+
+Query:
+json
+[
+  {
+    "$match": {
+      "city": "Singapore",               
+      "types": { "$in": ["convenience_store"] }, 
+      "business_status": "OPERATIONAL",
+      "price_level": 1 
+    }
+  },
+  {
+    "$sort": {
+      "rating": -1
+    }
+  },
+  {
+    "$limit": 3  
+  },
+  {
+    "$project": {
+      "name": 1,
+      "address": 1,
+      "types": 1,
+      "rating": 1,
+      "website": 1,
+      "photos": 1 
+    }
+  }
+]
+
+
+
+Each of these queries is designed to run within MongoDB's aggregation framework to extract specific information based on the user's questions.
+ The `$project` step is used to format the output to include only relevant fields. 

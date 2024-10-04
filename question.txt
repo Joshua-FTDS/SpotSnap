@@ -1,0 +1,4 @@
+1. What are the top 5 highest-rated restaurants in Menteng?
+2. Give me 5 different amusement park addresses in Singapore.
+3. What are the top 5 highest-rated convenience stores in Singapore that are cheap?
+4. Recommend me some place names that is both a nightclub and a restaurant.

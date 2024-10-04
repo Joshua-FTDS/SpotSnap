@@ -1,0 +1,12 @@
+streamlit
+pandas
+numpy
+langchain
+scikit-learn==1.3.0
+tensorflow==2.15.0
+pymongo
+tensorflow_hub==0.16.1
+langchain_openai
+seaborn
+matplotlib
+plotly
